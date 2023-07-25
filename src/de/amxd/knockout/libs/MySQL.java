@@ -2,7 +2,10 @@ package de.amxd.knockout.libs;
 
 
 
+import de.amxd.knockout.main.Main;
+
 import java.sql.*;
+import java.util.logging.Level;
 
 public class MySQL {
     private String HOST;
@@ -23,13 +26,13 @@ public class MySQL {
 
 
             con = DriverManager.getConnection("jdbc:mysql://"+HOST+":3306/"+DATABASE,USER,PASSWORD);
-            System.out.println("[KnockOut] Erfolgreich zur Datenbank verbunden");
-            System.out.println(HOST + " " + DATABASE+ " " + PASSWORD + " " + USER); //debug
+
+            Main.pl.getLogger().log(Level.INFO,"[KnockOut] Erfolgreich zur Datenbank verbunden");
         }
         catch (SQLException e){
             e.printStackTrace();
-            System.out.println("[KnockOut] Fehler beim verbinden zur Datenbank");
-            System.out.println(HOST + " " + DATABASE+ " " + PASSWORD + " " + USER); //debug
+
+            Main.pl.getLogger().log(Level.WARNING,"[KnockOut] Fehler beim verbinden zur Datenbank");
         }
     }
     public void close(){
