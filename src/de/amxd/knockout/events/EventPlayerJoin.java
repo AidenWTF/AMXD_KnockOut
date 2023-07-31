@@ -3,6 +3,7 @@ package de.amxd.knockout.events;
 import de.amxd.knockout.libs.Items;
 import de.amxd.knockout.libs.ScoreboardUtil;
 import de.amxd.knockout.main.Main;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 
 import org.bukkit.configuration.file.FileConfiguration;
@@ -13,6 +14,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 
+
 import static de.amxd.knockout.main.Main.MY_SQL;
 
 
@@ -20,6 +22,8 @@ public class EventPlayerJoin implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e){
+
+
         e.setJoinMessage("§f[§a+§f] "+e.getPlayer().getName());
         FileConfiguration config = Main.pl.getConfig();
 

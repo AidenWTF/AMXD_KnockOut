@@ -1,6 +1,5 @@
 package de.amxd.knockout.events;
 
-
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -13,9 +12,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.util.Vector;
 
-
-
-public class EventGrapple  implements Listener {
+public class EventGrapple implements Listener {
     @EventHandler
     public void onFish(PlayerFishEvent e) {
         Player p = e.getPlayer();

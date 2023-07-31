@@ -52,7 +52,7 @@ public class ScoreboardUtil {
                     objective.getScore("§9Kills:").setScore(9);
                     objective.getScore("  §b"+kills).setScore(8);
                     objective.getScore("  ").setScore(7);
-                    objective.getScore("§2Tode:").setScore(6);
+                    objective.getScore("§2Deaths:").setScore(6);
                     objective.getScore("  §a" +deaths).setScore(5);
                     objective.getScore("   ").setScore(4);
                     objective.getScore("§5Assists:").setScore(3);

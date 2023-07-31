@@ -27,4 +27,6 @@ bin/
 
 ### Mac OS ###
 .DS_Store
-.idea
+/.idea/
+/KnockOut.iml
+/AMXD_KnockOut.iml

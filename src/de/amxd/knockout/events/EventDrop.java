@@ -1,6 +1,5 @@
 package de.amxd.knockout.events;
 
-
 import org.bukkit.GameMode;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
