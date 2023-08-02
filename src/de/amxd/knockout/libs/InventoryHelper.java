@@ -8,6 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -65,7 +66,11 @@ public class InventoryHelper implements Listener {
         }
         ent.openInventory(inv);
     }
-
+public void notEnoughCoins(Player p, InventoryClickEvent e){
+    e.setCancelled(true);
+    p.sendMessage(NOT_ENOUGH_COINS);
+    p.playSound(p.getLocation(), Sound.BLOCK_CHAIN_BREAK, 1.0F, 1.0F);
+}
     @EventHandler
 
     public void onInventoryClick(InventoryClickEvent e) {
@@ -75,71 +80,60 @@ public class InventoryHelper implements Listener {
 
         if (e.getRawSlot() == 0) {
             if (coins < 1) {
-                e.setCancelled(true);
-                e.getWhoClicked().sendMessage(NOT_ENOUGH_COINS);
-                p.playSound(p.getLocation(), Sound.BLOCK_CHAIN_BREAK, 1.0F, 1.0F);
+               notEnoughCoins(p,e);
             } else {
                 e.setCancelled(true);
                 p.getInventory().addItem(createGuiItem(Material.SANDSTONE, "§bBlocks"));
 
                 p.setLevel(coins - 1);
                 p.playSound(p.getLocation(), Sound.BLOCK_AMETHYST_CLUSTER_BREAK, 1.0F, 1.0F);
-                e.getWhoClicked().sendMessage(BOUGHT("Blocks","1 Coin"));
+                p.sendMessage(BOUGHT("Blocks","1 Coin"));
                 ScoreboardUtil.updateAll();
             }
 
         }
         if (e.getRawSlot() == 1) {
             if (coins < 10) {
-                e.setCancelled(true);
-                e.getWhoClicked().sendMessage(NOT_ENOUGH_COINS);
-                p.playSound(p.getLocation(), Sound.BLOCK_CHAIN_BREAK, 1.0F, 1.0F);
+                notEnoughCoins(p,e);
             } else {
                 e.setCancelled(true);
                 p.getInventory().addItem(createGuiItem(Material.FISHING_ROD, NAME_GRA, LORE_GRA));
                 p.setLevel(coins - 10);
                 p.playSound(p.getLocation(), Sound.BLOCK_AMETHYST_CLUSTER_BREAK, 1.0F, 1.0F);
-                e.getWhoClicked().sendMessage(BOUGHT("Grappling Hook","10 Coins"));
+                p.sendMessage(BOUGHT("Grappling Hook","10 Coins"));
                 ScoreboardUtil.updateAll();
             }
 
         }
         if (e.getRawSlot() == 2) {
             if (coins < 20) {
-                e.setCancelled(true);
-                e.getWhoClicked().sendMessage(NOT_ENOUGH_COINS);
-                p.playSound(p.getLocation(), Sound.BLOCK_CHAIN_BREAK, 1.0F, 1.0F);
+                notEnoughCoins(p,e);
             } else {
                 e.setCancelled(true);
                 p.getInventory().addItem(createGuiItem(Material.BOW, NAME_BOW, LORE_BOW));
                 p.setLevel(coins - 20);
                 p.playSound(p.getLocation(), Sound.BLOCK_AMETHYST_CLUSTER_BREAK, 1.0F, 1.0F);
-                e.getWhoClicked().sendMessage(BOUGHT("Bow","20 Coins"));
+                p.sendMessage(BOUGHT("Bow","20 Coins"));
                 ScoreboardUtil.updateAll();
             }
 
         }
         if (e.getRawSlot() == 3) {
             if (coins < 1) {
-                e.setCancelled(true);
-                e.getWhoClicked().sendMessage(NOT_ENOUGH_COINS);
-                p.playSound(p.getLocation(), Sound.BLOCK_CHAIN_BREAK, 1.0F, 1.0F);
+                notEnoughCoins(p,e);
             } else {
                 e.setCancelled(true);
                 p.getInventory().addItem(createGuiItem(Material.ARROW, NAME_ARROW, LORE_ARROW));
                 p.setLevel(coins - 1);
                 p.playSound(p.getLocation(), Sound.BLOCK_AMETHYST_CLUSTER_BREAK, 1.0F, 1.0F);
-                e.getWhoClicked().sendMessage(BOUGHT("Arrow","1 Coin"));
+                p.sendMessage(BOUGHT("Arrow","1 Coin"));
                 ScoreboardUtil.updateAll();
             }
         }
         if (e.getRawSlot() == 4) { // DoubleJump
 
             if (coins < 15) {
-                e.setCancelled(true);
-                e.getWhoClicked().sendMessage(NOT_ENOUGH_COINS);
-
-                p.playSound(p.getLocation(), Sound.BLOCK_CHAIN_BREAK, 1.0F, 1.0F);
+                notEnoughCoins(p,e);
 
             } else if (e.getCurrentItem().getType().equals(BLACK_STAINED_GLASS_PANE)) {
                 e.setCancelled(true);
@@ -154,7 +148,7 @@ public class InventoryHelper implements Listener {
                 inv.setItem(4, ItemUtil.createItem(BLACK_STAINED_GLASS_PANE, OWNED_NO_PREFIX, 0, 1));
                 p.setLevel(coins - 15);
                 p.playSound(p.getLocation(), Sound.BLOCK_AMETHYST_CLUSTER_BREAK, 1.0F, 1.0F);
-                e.getWhoClicked().sendMessage(BOUGHT("DoubleJump","15 Coins"));
+                p.sendMessage(BOUGHT("DoubleJump","15 Coins"));
                 ScoreboardUtil.updateAll();
             }
 
